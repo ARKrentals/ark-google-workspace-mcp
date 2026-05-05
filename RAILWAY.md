@@ -15,11 +15,20 @@ The upstream README (`README.md`) covers the server itself. This file documents 
 
 1. Create a new Railway project. Link it to `ARKrentals/ark-google-workspace-mcp`, branch `main`. Railway will auto-detect `railway.toml` and build from `Dockerfile`.
 2. Add a **Railway Volume** to the service:
-   - Mount path: `/app/store_creds`
+   - Mount path: `/data` (NOT `/app/*` — see note below)
    - Size: 1 GB (free tier is fine; we'll use kilobytes)
+
+   > Don't mount under `/app/`. Railway volumes contain a `lost+found` dir at
+   > the mount root; setuptools' editable install scans the project root
+   > (`/app`) for Python packages, finds `lost+found`, and crashes with
+   > permission-denied trying to write `__init__.py` into the root-owned
+   > volume contents. `/data` is outside the project tree and avoids this.
 3. Set the env vars listed in `.env.example`. Specifically:
    - `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` from the GCP Web client
    - `FASTMCP_SERVER_AUTH_GOOGLE_JWT_SIGNING_KEY` from the random generation above
+   - **Do NOT set `PORT`.** Railway auto-injects PORT and routes its edge to that
+     same port; setting PORT explicitly causes 502s because the app and edge
+     end up on different ports.
    - Leave `GOOGLE_OAUTH_REDIRECT_URI` and `WORKSPACE_EXTERNAL_URL` as placeholders for now
 4. Deploy. Note the public URL Railway assigns (e.g. `https://ark-google-workspace-mcp-production.up.railway.app`).
 5. Update **two** things with that URL:
