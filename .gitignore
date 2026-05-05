@@ -3,7 +3,6 @@ __pycache__/
 *.py[cod]
 *.so
 .mcp.json
-claude.md
 .beads/*
 .beads/issues.jsonl
 
@@ -24,6 +23,8 @@ venv/
 
 # ---- Secrets -----------------------------------------------------------
 client_secret.json
+client_secret_*.json
+.env.local
 
 # ---- Logs --------------------------------------------------------------
 mcp_server_debug.log
