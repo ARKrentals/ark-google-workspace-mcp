@@ -1,6 +1,12 @@
 # BUILD-CONTEXT — Google Workspace MCP Server (Railway-hosted)
 
-**Status:** New project, scaffolded 2026-05-05. Replacing the dead local taylorwilsdon/google_workspace_mcp install. Handed off to Claude Code from a Cowork session.
+**Status: SHIPPED 2026-05-06.** Live at `https://ark-google-workspace-mcp-production.up.railway.app/mcp`. Both Cowork connectors (gus@arkrentalsaz.com, gus@arkrentals.co) verified end-to-end: Gmail search returned correct mail, draft creation against a real thread succeeded, cross-account isolation confirmed. Local install decommissioned (Scheduled Task disabled, all artifacts archived to `C:\Users\guske\_archive\workspace-mcp-local-install-2026-05-05\`).
+
+For future sessions, the canonical operating doc is now `RAILWAY.md` (redeploy-from-scratch + decom playbook). The rest of this file is preserved as the historical brief that scoped the migration.
+
+---
+
+**Original status:** New project, scaffolded 2026-05-05. Replacing the dead local taylorwilsdon/google_workspace_mcp install. Handed off to Claude Code from a Cowork session.
 
 **Mission:** Re-establish the Google Workspace MCP server (Gmail / Calendar / Drive / Docs / Sheets / Slides / Tasks / Forms / Chat / Contacts) for Gus by deploying `taylorwilsdon/google_workspace_mcp` as a remote, multi-user, OAuth 2.1 server on Railway. Replace the dead local install; restore tools across all of Gus's devices including his laptop and Claude mobile.
 
