@@ -9,7 +9,6 @@ This project deploys `taylorwilsdon/google_workspace_mcp` as a remote, multi-use
 **Hard rules carried over from his other projects:**
 - Code lives in `C:\Code\<project>\`, never in OneDrive (`.git/` corruption trap).
 - No secrets in git. Bearer tokens, OAuth client secrets, refresh tokens go in Railway Variables and a gitignored `.env`.
-- Don't auto-deploy. Show Gus the diff and the env vars before any `railway up`.
 
 **Reference: the upstream `taylorwilsdon/google_workspace_mcp` repo.** It's mature, actively maintained, and represents current best practice for Workspace MCP deployment (Docker, OAuth 2.1, stateless mode). Stay close to upstream so future updates can be pulled cleanly — default to "fork and modify minimally", not "rewrite."
 
