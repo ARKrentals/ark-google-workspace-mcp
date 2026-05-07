@@ -23,6 +23,12 @@ The upstream README (`README.md`) covers the server itself. This file documents 
    > (`/app`) for Python packages, finds `lost+found`, and crashes with
    > permission-denied trying to write `__init__.py` into the root-owned
    > volume contents. `/data` is outside the project tree and avoids this.
+   >
+   > Railway volumes mount root-owned. `railway-entrypoint.sh` (in this fork)
+   > chowns `/data` to the non-root `app` user at container start so that
+   > both `WORKSPACE_MCP_CREDENTIALS_DIR` and the FastMCP OAuth-proxy disk
+   > store can persist across pod restarts. Without this fix, OAuth state
+   > is wiped on every restart and Cowork connectors silently break.
 3. Set the env vars listed in `.env.example`. Specifically:
    - `GOOGLE_OAUTH_CLIENT_ID` and `GOOGLE_OAUTH_CLIENT_SECRET` from the GCP Web client
    - `FASTMCP_SERVER_AUTH_GOOGLE_JWT_SIGNING_KEY` from the random generation above
